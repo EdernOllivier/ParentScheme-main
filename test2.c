@@ -28,9 +28,9 @@ void main(void) {
 int V = 109;
 int dt = 1;
 int l = 5;
-int x = 0;
-int y = 0;
-int phi = 0;
+//float x = 0;
+//float y = 0;
+//float phi = 0;
 FILE* fd = fopen("text.txt","wt");
 //mfprintf(fd,'hello %s %d.\n','world',1);
 //mfprintf(fd,'hello %s %d.\n','scilab',2);
@@ -51,45 +51,45 @@ for (i=0; i<1000; i++) {
     //c = getchar();
     //putchar(c);
     //printf("%c\n", c);
-  //fprintf(fd, "ceci est un test..\n");
-  //for k = 0:100
-  // dphi/dt = tan(0.01*t)/l
-  float phi = (tan(delta)/l)*dt + phi;
-  //  fprintf(fd, "La valeur de l'orientation du vehicule vaut : %f\n", phi);
-  //disp(phi)
-  // dx/dt = V*cos(phi)
-  float x = V*cos(phi)*dt + x;
-  //  fprintf(fd, "La valeur de la position en x du vehicule vaut : %f\n", x);
-  //plot(i,x);
-  //disp(x)
-  // dy/dt = V*sin(phi)
-  float y = V*sin(phi)*dt + y;
-  //  fprintf(fd, "La valeur de la position en y du vehicule vaut : %f\n", y);
-  //disp(y)
-  //plot(x,y);//,'ro');
-  //X = [x; y; phi];
-  //U = [V; 0.01*i];
+    //fprintf(fd, "ceci est un test..\n");
+    //for k = 0:100
+    // dphi/dt = tan(0.01*t)/l
+    float phi = (float)((tan(delta)/l)*dt + phi);
+    //  fprintf(fd, "La valeur de l'orientation du vehicule vaut : %f\n", phi);
+    //disp(phi)
+    // dx/dt = V*cos(phi)
+    float x = (float)(V*cos(phi)*dt + x);
+    //  fprintf(fd, "La valeur de la position en x du vehicule vaut : %f\n", x);
+    //plot(i,x);
+    //disp(x)
+    // dy/dt = V*sin(phi)
+    float y = (float)(V*sin(phi)*dt + y);
+    //  fprintf(fd, "La valeur de la position en y du vehicule vaut : %f\n", y);
+    //disp(y)
+    //plot(x,y);//,'ro');
+    //X = [x; y; phi];
+    //U = [V; 0.01*i];
 
-  //disp("Etat du v�hicule : ")
-  //disp(X)
-  //disp("Commande : ")
-  //disp(U)
-  /*
+    //disp("Etat du v�hicule : ")
+    //disp(X)
+    //disp("Commande : ")
+    //disp(U)
+    /*
     k = 1;
     phi(i, k) = phi(i);
   */
   // Linear approximation done here
   //A = [1 ,0 ,-V*sin(phi)*dt; 0 ,1 ,V*cos(phi)*dt; 0 ,0 ,1];
-  float x_app = x -V*sin(phi)*dt*phi;
-  float y_app = y +V*cos(phi)*dt*phi;
-  float phi_app = phi;
+  float x_app = (float)(x -V*sin(phi)*dt*phi);
+  float y_app = (float)(y +V*cos(phi)*dt*phi);
+  float phi_app = (float)(phi);
   //  fprintf(fd, "La valeur de l'approximation de la position en x du vehicule vaut : %f\n", x_app);
   //  fprintf(fd, "La valeur de l'approximation de la position en y du vehicule vaut : %f\n", y_app);
   //  fprintf(fd, "La valeur de l'approximation de la position en phi du vehicule vaut : %f\n", phi_app);
   //B = [cos(phi)*dt, 0; sin(phi)*dt, 0; tan(0.01*i)*dt/l, V*dt/(l*cos(0.01*i)^2)];
-  float u_x = V*cos(phi)*dt;
-  float u_y = delta*sin(phi)*dt;
-  float u_phi = V*tan(delta)*dt/l +delta*V*dt/(l*cos(delta)*cos(delta));
+  float u_x = (float)(V*cos(phi)*dt);
+  float u_y = (float)(delta*sin(phi)*dt);
+  float u_phi = (float)(V*tan(delta)*dt/l +delta*V*dt/(l*cos(delta)*cos(delta)));
   //  fprintf(fd, "La valeur de l'approximation de la position en x du vehicule avec l'entree en x vaut : %f\n", x_app +u_x);
   //  fprintf(fd, "La valeur de l'approximation de la position en y du vehicule avec l'entree en y vaut : %f\n", y_app +u_y);
   //  fprintf(fd, "La valeur de l'approximation de la position en phi du vehicule avec l'entree en phi vaut : %f\n", phi_app +u_phi);
@@ -110,10 +110,7 @@ for (i=0; i<1000; i++) {
   //  fprintf(fd, "%f\t%f\t%f\t%f\t%f\t%f\t\n", phi, x, y, phi_app, x_app, y_app);
   fprintf(fd, "%f\t%f\t%f\t%f\t\n", x, y, x_app, y_app);
 }
-//mclose(fd);
-
+fclose(fd);
 //plot(x,y,'ro');
-
-
 }
 //eof
