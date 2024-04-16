@@ -9,7 +9,7 @@
       "stopAtEntry": false,
       "externalConsole": true,
       "cwd": "c:/Users/edern/Documents/ParentScheme-main",
-      "program": "c:/Users/edern/Documents/ParentScheme-main/build/Release/outRelease",
+      "program": "c:/Users/edern/Documents/ParentScheme-main/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
