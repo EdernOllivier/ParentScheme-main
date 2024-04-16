@@ -77,40 +77,40 @@ for (i=0; i<1000; i++) {
     /*
     k = 1;
     phi(i, k) = phi(i);
-  */
-  // Linear approximation done here
-  //A = [1 ,0 ,-V*sin(phi)*dt; 0 ,1 ,V*cos(phi)*dt; 0 ,0 ,1];
-  float x_app = (float)(x -V*sin(phi)*dt*phi);
-  float y_app = (float)(y +V*cos(phi)*dt*phi);
-  float phi_app = (float)(phi);
-  //  fprintf(fd, "La valeur de l'approximation de la position en x du vehicule vaut : %f\n", x_app);
-  //  fprintf(fd, "La valeur de l'approximation de la position en y du vehicule vaut : %f\n", y_app);
-  //  fprintf(fd, "La valeur de l'approximation de la position en phi du vehicule vaut : %f\n", phi_app);
-  //B = [cos(phi)*dt, 0; sin(phi)*dt, 0; tan(0.01*i)*dt/l, V*dt/(l*cos(0.01*i)^2)];
-  float u_x = (float)(V*cos(phi)*dt);
-  float u_y = (float)(delta*sin(phi)*dt);
-  float u_phi = (float)(V*tan(delta)*dt/l +delta*V*dt/(l*cos(delta)*cos(delta)));
-  //  fprintf(fd, "La valeur de l'approximation de la position en x du vehicule avec l'entree en x vaut : %f\n", x_app +u_x);
-  //  fprintf(fd, "La valeur de l'approximation de la position en y du vehicule avec l'entree en y vaut : %f\n", y_app +u_y);
-  //  fprintf(fd, "La valeur de l'approximation de la position en phi du vehicule avec l'entree en phi vaut : %f\n", phi_app +u_phi);
-  //C = [1, 0, 0; 0, 1, 0; 0, 0, 1];
-  //Xapp = A*X +B*U;
-  //plot(Xapp(1,:),Xapp(2,:),'g+-');
-  //disp("Etat approxim� du v�hicule : ")
-  //disp(Xapp)
+    */
+    // Linear approximation done here
+    //A = [1 ,0 ,-V*sin(phi)*dt; 0 ,1 ,V*cos(phi)*dt; 0 ,0 ,1];
+    float x_app = (float)(x -V*sin(phi)*dt*phi);
+    float y_app = (float)(y +V*cos(phi)*dt*phi);
+    float phi_app = (float)(phi);
+    //  fprintf(fd, "La valeur de l'approximation de la position en x du vehicule vaut : %f\n", x_app);
+    //  fprintf(fd, "La valeur de l'approximation de la position en y du vehicule vaut : %f\n", y_app);
+    //  fprintf(fd, "La valeur de l'approximation de la position en phi du vehicule vaut : %f\n", phi_app);
+    //B = [cos(phi)*dt, 0; sin(phi)*dt, 0; tan(0.01*i)*dt/l, V*dt/(l*cos(0.01*i)^2)];
+    float u_x = (float)(V*cos(phi)*dt);
+    float u_y = (float)(delta*sin(phi)*dt);
+    float u_phi = (float)(V*tan(delta)*dt/l +delta*V*dt/(l*cos(delta)*cos(delta)));
+    //  fprintf(fd, "La valeur de l'approximation de la position en x du vehicule avec l'entree en x vaut : %f\n", x_app +u_x);
+    //  fprintf(fd, "La valeur de l'approximation de la position en y du vehicule avec l'entree en y vaut : %f\n", y_app +u_y);
+    //  fprintf(fd, "La valeur de l'approximation de la position en phi du vehicule avec l'entree en phi vaut : %f\n", phi_app +u_phi);
+    //C = [1, 0, 0; 0, 1, 0; 0, 0, 1];
+    //Xapp = A*X +B*U;
+    //plot(Xapp(1,:),Xapp(2,:),'g+-');
+    //disp("Etat approxim� du v�hicule : ")
+    //disp(Xapp)
 
-  //Y = C*X;
-  //disp(Y)
-  //end;
+    //Y = C*X;
+    //disp(Y)
+    //end;
 
-  //mfprintf(fd,'This line is built with a column vector (26:28) %d.\n',[26:28].');
-  //mfprintf(fd,'This line is built with a row vector (26:28) %d.\n',[26:28]);
-  //mfprintf(fd,'This line is built with a matrix %.3f.\n',Xapp);
-  //mfprintf(fd,'This line is built with a matrix %.3f.\n',Y);
-  //  fprintf(fd, "%f\t%f\t%f\t%f\t%f\t%f\t\n", phi, x, y, phi_app, x_app, y_app);
-  fprintf(fd, "%f\t%f\t%f\t%f\t\n", x, y, x_app, y_app);
-}
-fclose(fd);
-//plot(x,y,'ro');
+    //mfprintf(fd,'This line is built with a column vector (26:28) %d.\n',[26:28].');
+    //mfprintf(fd,'This line is built with a row vector (26:28) %d.\n',[26:28]);
+    //mfprintf(fd,'This line is built with a matrix %.3f.\n',Xapp);
+    //mfprintf(fd,'This line is built with a matrix %.3f.\n',Y);
+    //  fprintf(fd, "%f\t%f\t%f\t%f\t%f\t%f\t\n", phi, x, y, phi_app, x_app, y_app);
+    fprintf(fd, "%f\t%f\t%f\t%f\t\n", x, y, x_app, y_app);
+    }
+    fclose(fd);
+    //plot(x,y,'ro');
 }
 //eof
